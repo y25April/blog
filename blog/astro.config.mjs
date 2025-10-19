@@ -4,6 +4,6 @@ import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://y25April.github.io/blog/", // ← ここを自分のGitHub Pages URLに変更
-  base: "/my-blog/", // ← リポジトリ名
+  base: "/blog/", // ← リポジトリ名
   integrations: [tailwind()],
 });
