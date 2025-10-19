@@ -2,12 +2,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
-// export default defineConfig({
-//   vite: {
-//     plugins: [tailwindcss()]
-//   }
-// });
 export default defineConfig({
+  site: "https://y25April.github.io/blog/", // ← ここを自分のGitHub Pages URLに変更
+  base: "/my-blog/", // ← リポジトリ名
   integrations: [tailwind()],
 });
