@@ -1,1 +1,29 @@
 # blog
+
+## Dir
+```
+my-blog/
+├── src/
+│   ├── content/
+│   │   └── posts/            ← 記事（Markdown）を置く場所
+│   │   └── tools/            ← toolを置く場所
+│   ├── layouts/              ← ページ共通レイアウト
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro       ← トップページ
+│   │   └── blog/
+│   │       └── index.astro   ← 記事一覧ページ
+│   └── components/           ← コンポーネント（Header, Footerなど）
+│       ├── Header.astro
+│       └── PostCard.astro
+├── public/                   ← 画像やfaviconなど静的ファイル
+└── astro.config.mjs
+```
+- コンテンツコレクションを有効化
+  - Astroのcontent collectionsを使うことでMarkdown記事を型安全に管理できます
+  - blog/src/content/config.ts
+- getStaticPaths() とは？
+  - Astro が動的ルート（[slug].astro など）をビルドするために必要な関数です。
+  - getCollection("posts") → src/content/posts/ のすべてのMarkdownを取得
+  - それぞれの投稿の slug を使って /blog/{slug}/ を生成
+  - props として post の中身をページに渡す、という流れになります。
