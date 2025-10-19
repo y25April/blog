@@ -34,20 +34,29 @@ my-blog/
     src/content/posts/second-post.md	/blog/second-post/
     ```
     - この仕組みにより、Markdownファイルを追加するだけで自動でページが増える ようになります。
+## create
+blog/src/content/posts/xxx.md
+
 ## build
 GitHub Pagesは静的サイトのみ配信
 - setting
   - blog/astro.config.mjs
     - site は本番環境のURL
     - base は GitHub Pages のサブパス（リポジトリ名）
-- build & push
+- build
   - npm run build
   - 出力先は dist/ ディレクトリ（デフォルト）
 - GitHub Actions
-  - 
 
-
-
-  ✅ 「トップデザインを整える」
-
-✅ 「GitHub Pages にデプロイ」
+## deploy
+npm install gh-pages --save-dev
+npm run deploy     
+- -d dist は Astro のビルド出力先（dist/ フォルダ）を gh-pages に公開する指定です   
+  
+# GitHub Pages
+1. GitHub のリポジトリを開く
+2. Settings → Pages
+3. Source を gh-pages ブランチに設定
+4. 保存すると数分後に公開されます
+デフォルトで peaceiris/actions-gh-pages が gh-pages ブランチに push するため、この設定でOKです
+- https://y25april.github.io/blog/
