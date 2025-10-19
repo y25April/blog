@@ -27,3 +27,27 @@ my-blog/
   - getCollection("posts") → src/content/posts/ のすべてのMarkdownを取得
   - それぞれの投稿の slug を使って /blog/{slug}/ を生成
   - props として post の中身をページに渡す、という流れになります。
+    - 補足：自動ルーティングの仕組み
+    - Markdownファイル	生成されるURL
+    ```
+    src/content/posts/hello-world.md	/blog/hello-world/
+    src/content/posts/second-post.md	/blog/second-post/
+    ```
+    - この仕組みにより、Markdownファイルを追加するだけで自動でページが増える ようになります。
+## build
+GitHub Pagesは静的サイトのみ配信
+- setting
+  - blog/astro.config.mjs
+    - site は本番環境のURL
+    - base は GitHub Pages のサブパス（リポジトリ名）
+- build & push
+  - npm run build
+  - 出力先は dist/ ディレクトリ（デフォルト）
+- GitHub Actions
+  - 
+
+
+
+  ✅ 「トップデザインを整える」
+
+✅ 「GitHub Pages にデプロイ」
