@@ -2,21 +2,60 @@ name: Deploy Astro site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - run: npm install
-      - run: npm run build
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./blog  # 👈 ここを追加！
+
+      - name: Build project
+        run: npm run build
+        working-directory: ./blog  # 👈 ここも追加！
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v5
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./blog/dist  # 👈 blog配下に出力されるdistを指定
+
+# name: Deploy Astro site to GitHub Pages
+
+# on:
+#   push:
+#     branches: [ main ]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: '20'
+#       - run: npm install
+#       - run: npm run build
+#       - name: Deploy to GitHub Pages
+#         uses: peaceiris/actions-gh-pages@v5
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           publish_dir: ./dist

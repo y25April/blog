@@ -4,7 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 
 // Markdown記事をルーティングに登録する
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+  const posts = await getCollection("blog");
 
   return posts.map((post) => ({
     params: { slug: post.slug },
@@ -14,7 +14,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 ---
-
+<!-- /blog/任意のスラッグを生成、「動的ルート」と呼ばれる機能 -->
+<!-- 個別記事ページ -->
 <Layout title={post.data.title}>
   <article class="max-w-3xl mx-auto p-4 prose prose-lg dark:prose-invert">
     <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
